@@ -9,9 +9,17 @@ import {
   MarkSeries
 } from "react-vis";
 
-export default function Example(props) {
+export default function Plot({ items }) {
+  const data = [];
+  items.map(item => {
+    data.push({
+      x: item.testCnt,
+      y: item.purchaseCnt,
+      size: (item.purchaseCnt / item.testCnt) * 100
+    });
+  });
   return (
-    <XYPlot width={300} height={300}>
+    <XYPlot width={340} height={340}>
       <VerticalGridLines />
       <HorizontalGridLines />
       <XAxis />
@@ -21,13 +29,8 @@ export default function Example(props) {
         strokeWidth={2}
         opacity="0.8"
         sizeRange={[5, 15]}
-        data={[
-          { x: 1, y: 10, size: 30 },
-          { x: 1.7, y: 12, size: 10 },
-          { x: 2, y: 5, size: 1 },
-          { x: 3, y: 15, size: 12 },
-          { x: 2.5, y: 7, size: 4 }
-        ]}
+        data={data}
+        color="#c10c3f"
       />
     </XYPlot>
   );

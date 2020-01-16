@@ -1,7 +1,7 @@
 import React from "react";
-import PropTypes from "prop-types";
 import styled from "styled-components";
 import { XYPlot, HorizontalBarSeries } from "react-vis";
+import Plot from "./Plot.js";
 
 const ItemContainer = styled.div`
   display: flex;
@@ -61,16 +61,6 @@ const GraphContainer = styled.div`
   /* justify-content: center; */
 `;
 
-const SummaryContainer = styled.div`
-  float: left;
-  display: block;
-  width: 48%;
-  height: 100%;
-  position: absolute;
-  top: 23px;
-  left: 580px;
-`;
-
 const Summary = styled.div`
   position: absolute;
 `;
@@ -108,16 +98,9 @@ function Detail({ data }) {
             />
           ))}
         </XYPlot>
+        <Plot items={items} />
       </GraphContainer>
-      <SummaryContainer>
-        {/* {items.map(item => {
-          if (item.id === BestSeller) {
-            return <ItemDetail>BestSeller</ItemDetail>;
-          } else if (item.id === BestTester) {
-            return <ItemDetail>BestTester</ItemDetail>;
-          } else return <ItemDetail>BestTester</ItemDetail>;
-        })} */}
-      </SummaryContainer>
+      <GraphContainer>{/* <Plot items={items} /> */}</GraphContainer>
     </ItemContainer>
   );
 }

@@ -1,10 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import { Carousel } from "antd";
 import "antd/dist/antd.css";
 import Axios from "axios";
 import Detail from "./Detail.js";
-import Plot from "./Plot.js";
 import "./App.css";
 
 const Container = styled.div`
@@ -22,12 +20,18 @@ class App extends React.Component {
     data: []
   };
   getItems = async () => {
-    const { data } = await Axios.get("http://15.164.228.86:3000/api/data");
+    const { data } = await Axios.get("http://localhost:3000/api/data");
     this.setState({ data });
   };
   componentDidMount() {
     this.getItems();
+    setInterval(async () => {
+      const { data } = await Axios.post("http://localhost:3000/api/data");
+      this.setState({ data });
+    }, 50);
   }
+
+  componentDidUpdate() {}
   render() {
     const { data } = this.state;
     return (
